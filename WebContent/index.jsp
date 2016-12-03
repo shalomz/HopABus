@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+<%@ page session="true"%>
+
+<sql:setDataSource var="busDetails" driver="com.mysql.jdbc.Driver"
+	url="jdbc:mysql://localhost/Bus" user="root" password=" " />
+
+<sql:query dataSource="${busDetails}" var="result">
+ select * from AvailableBuses 
+</sql:query>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +17,10 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/theme.css" rel="stylesheet">
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<script src="js/jquery-2.2.3.min.js"></script>
+<script src="js/npm.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap.js"></script>
 
 
 
@@ -41,21 +55,40 @@
 
 	<div class="container">
 		<div class="page-header text-center">
+			<br>
 			<h1>Select Origin, Destination, Bus Type and Time of travel</h1>
 		</div>
 		<div class="row">
 			<%
 				if (request.getAttribute("errors") != null) {
 			%>
-			
-			<div class="alert alert-danger alert-dismissible text-center" role="alert">
+
+			<div
+				class="alert alert-warning alert-dismissible fade in text-center"
+				role="alert">
 				<button type="button" class="close" data-dismiss="alert"
-					aria-hidden="true">&times;</button>
-				<h4>
-					<i class="icon fa fa-ban"></i> Alert!
-				</h4>
-				No buses matching your preference are available for the moment. Try
-				again
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				No bus matching your query is available at the moment.Try checking
+				another combination
+			</div>
+			<%
+				}
+			%>
+			
+			<%
+				if (request.getAttribute("message") != null) {
+			%>
+
+			<div
+				class="alert alert-warning alert-dismissible fade in text-center"
+				role="alert">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				Successfuly reserved
 			</div>
 			<%
 				}
@@ -70,13 +103,11 @@
 						<div class="panel-body">
 							<div class="form-group">
 
-								<select class="form-control" name="origin" required>
-									<option></option>
-									<option>Kitale</option>
-									
-									<option>option 3</option>
-									<option>option 4</option>
-									<option>option 5</option>
+								<select class="form-control" name="origin" id="origin" required>
+									<c:forEach var="row" items="${result.rows}">
+										<option origin-id="${row.origin}"><c:out
+												value="${row.origin}" /></option>
+									</c:forEach>
 								</select>
 							</div>
 						</div>
@@ -92,13 +123,11 @@
 						<div class="panel-body">
 							<div class="form-group">
 
-								<select class="form-control" name="destination" required>
-									<option></option>
-									<option>Nairobi</option>
-									<option>option 2</option>
-									<option>option 3</option>
-									<option>option 4</option>
-									<option>option 5</option>
+								<select class="form-control" name="destination" id="destination" required>
+									<c:forEach var="row" items="${result.rows}">
+										<option destination-id="${row.destination}"><c:out
+												value="${row.destination}" /></option>
+									</c:forEach>
 								</select>
 							</div>
 						</div>
@@ -113,13 +142,11 @@
 						<div class="panel-body">
 							<div class="form-group">
 
-								<select class="form-control" default="" required name="time">
-									<option></option>
-									<option>2nd Dec, 8:00 AM</option>
-									<option>option 2</option>
-									<option>option 3</option>
-									<option>option 4</option>
-									<option>option 5</option>
+								<select class="form-control" name="time" id="time" required>
+									<c:forEach var="row" items="${result.rows}">
+										<option time-id="${row.time}"><c:out
+												value="${row.time}" /></option>
+									</c:forEach>
 								</select>
 							</div>
 						</div>
@@ -134,13 +161,11 @@
 						<div class="panel-body">
 							<div class="form-group">
 
-								<select class="form-control" name="category" required>
-									<option></option>
-									<option>First Class</option>
-									<option>option 2</option>
-									<option>option 3</option>
-									<option>option 4</option>
-									<option>option 5</option>
+								<select class="form-control" name="category" id="category" required>
+									<c:forEach var="row" items="${result.rows}">
+										<option origin-id="${row.category}"><c:out
+												value="${row.category}" /></option>
+									</c:forEach>
 								</select>
 							</div>
 						</div>
@@ -149,15 +174,21 @@
 				<div>
 
 					<button id="btnSubmit" type="submit"
-						class="btn btn-primary col-md-8 center col-md-offset-2">Search</button>
+						class="btn btn-success col-md-8 center col-md-offset-2">Search</button>
 
 
 				</div>
 
 			</form>
 		</div>
+		<br>
+		<h1 class="text-center">Instructions</h1>
+		<ul class="text-center">1. Select where you want to travel from (Origin)</ul>
+		<ul class="text-center">2. Select where you want to travel to (Destination)</ul>
+		<ul class="text-center">3. Select Time you want of travel (Departure Time)</ul>
+		<ul class="text-center">4. Select the bus Category</ul>
 	</div>
-	<script src="js/bootstrap.min.js"></script>
-	
+
+
 </body>
 </html>
