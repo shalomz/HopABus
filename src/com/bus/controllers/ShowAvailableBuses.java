@@ -33,9 +33,7 @@ public class ShowAvailableBuses extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("errors", null);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-		dispatcher.forward(request, response);
+		
 	}
 
 	/**
@@ -78,8 +76,7 @@ public class ShowAvailableBuses extends HttpServlet {
 		}
 		else{
 			request.setAttribute("errors", true);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-			dispatcher.forward(request, response);		
+			response.sendRedirect("index.jsp");
 		}
 		} catch (SQLException | ClassNotFoundException e) {
 			System.out.println("SQL EXCETION :" + e.getMessage());
