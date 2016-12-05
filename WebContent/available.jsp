@@ -47,6 +47,7 @@ SELECT * from AvailableBuses where origin = ? and destination = ? and time = ? a
 						<td><c:out value="${bus.time}" /></td>
 						<td><c:out value="${bus.category}" /></td>
 
+
 					</tr>
 				</c:forEach>
 		</table>

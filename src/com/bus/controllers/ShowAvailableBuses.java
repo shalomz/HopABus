@@ -34,6 +34,8 @@ public class ShowAvailableBuses extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//doPost(request, response);
+		getServletContext().getRequestDispatcher("/available.jsp").forward(request, response);;
 	}
 
 	/**
@@ -69,8 +71,8 @@ public class ShowAvailableBuses extends HttpServlet {
 			ResultSet rs = state.executeQuery();
 			
 		if(rs.next()){
-			request.setAttribute("errors", false);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("available.jsp");
+			request.setAttribute("errors", false);
 			dispatcher.forward(request, response);	
 			//response.sendRedirect("available.jsp");
 		}

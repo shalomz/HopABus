@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@ page session="true"%>
@@ -14,10 +14,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Complete Transaction</title>
 
-</head>
+</head>s
 <body>
-<font size="5" color='green'> 
-			successfully.</font>
-		<a href="index.jsp">Go Home</a>
+	<font size="5" color='green'> successfully.</font>
+	<a href="index.jsp">Go Home</a>
 </body>
 </html>

@@ -41,14 +41,9 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="AddPassenger">History</a></li>
-
-					<li><a href="#">Help</a></li>
+					<li><a href="help.jsp">Help</a></li>
 				</ul>
-				<form class="navbar-form navbar-right">
-					<input type="text" class="form-control" placeholder="Search..."
-						name="busType">
-				</form>
+
 			</div>
 		</div>
 	</nav>
@@ -76,7 +71,7 @@
 			<%
 				}
 			%>
-			
+
 			<%
 				if (request.getAttribute("message") != null) {
 			%>
@@ -123,7 +118,8 @@
 						<div class="panel-body">
 							<div class="form-group">
 
-								<select class="form-control" name="destination" id="destination" required>
+								<select class="form-control" name="destination" id="destination"
+									required>
 									<c:forEach var="row" items="${result.rows}">
 										<option destination-id="${row.destination}"><c:out
 												value="${row.destination}" /></option>
@@ -161,7 +157,8 @@
 						<div class="panel-body">
 							<div class="form-group">
 
-								<select class="form-control" name="category" id="category" required>
+								<select class="form-control" name="category" id="category"
+									required>
 									<c:forEach var="row" items="${result.rows}">
 										<option origin-id="${row.category}"><c:out
 												value="${row.category}" /></option>
@@ -183,10 +180,17 @@
 		</div>
 		<br>
 		<h1 class="text-center">Instructions</h1>
-		<ul class="text-center">1. Select where you want to travel from (Origin)</ul>
-		<ul class="text-center">2. Select where you want to travel to (Destination)</ul>
-		<ul class="text-center">3. Select Time you want of travel (Departure Time)</ul>
-		<ul class="text-center">4. Select the bus Category</ul>
+		<ul class="text-center">1. Select where you want to travel from
+			(Origin)
+		</ul>
+		<ul class="text-center">2. Select where you want to travel to
+			(Destination)
+		</ul>
+		<ul class="text-center">3. Select Time you want of travel
+			(Departure Time)
+		</ul>
+		<ul class="text-center">4. Select the bus Category
+		</ul>
 	</div>
 
 

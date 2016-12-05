@@ -27,7 +27,7 @@ public class SaveTransaction extends HttpServlet {
 	 */
 	public SaveTransaction() {
 		super();
-		
+
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class SaveTransaction extends HttpServlet {
 		String time = request.getParameter("time");
 		request.getParameter("category");
 		request.getParameter("fare");
-		request.getParameter("seatNumber");
+		int seat_number = Integer.parseInt(request.getParameter("seatNumber"));
 		String customerName = request.getParameter("customerName");
 		Calendar calendar = Calendar.getInstance();
 		java.sql.Timestamp TransactionTime = new java.sql.Timestamp(calendar
@@ -65,12 +65,13 @@ public class SaveTransaction extends HttpServlet {
 					"root", " ");
 			System.out.println("Connected successfully to DB");
 			PreparedStatement state = conn
-					.prepareStatement("insert into Transactions values(?,?,?,?,?)");
+					.prepareStatement("insert into Transactions values(?,?,?,?,?,?)");
 			state.setString(2, BusID);
 			state.setInt(1, id);
 			state.setString(3, customerName);
 			state.setTimestamp(4, TransactionTime);
 			state.setString(5, time);
+			state.setInt(6, seat_number);
 			state.executeUpdate();
 			RequestDispatcher dispatcher = request
 					.getRequestDispatcher("index.jsp");
@@ -79,7 +80,8 @@ public class SaveTransaction extends HttpServlet {
 			request.setAttribute("message", true);
 
 		} catch (SQLException | ClassNotFoundException e) {
-			out.println("SQLException :" + e.getMessage());
+			System.out.println("SQLException :" + e.getMessage());
+			out.print("<div class='alert alert-danger' role='alert' style='margin-right: 20px; margin-left: 20px; margin-top: 10px;' >That seat has been taken. <a href='book.jsp?BusID='+BusID>Try again</a> </div>");
 		}
 	}
 }
