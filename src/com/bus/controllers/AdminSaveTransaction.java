@@ -1,12 +1,14 @@
 package com.bus.controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Calendar;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,16 +16,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SaveTransaction
+ * Servlet implementation class AdminSaveTransaction
  */
-@WebServlet("/SaveTransaction")
-public class SaveTransaction extends HttpServlet {
+@WebServlet("/AdminSaveTransaction")
+public class AdminSaveTransaction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public SaveTransaction() {
+	public AdminSaveTransaction() {
 		super();
 
 	}
@@ -43,13 +45,13 @@ public class SaveTransaction extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+		PrintWriter out = response.getWriter();
 		String BusID = request.getParameter("BusID");
 		int id = 0;
 		request.getParameter("origin");
 		request.getParameter("destination");
 		String time = request.getParameter("time");
-		request.getParameter("category");
+		//request.getParameter("category");
 		request.getParameter("fare");
 		int seat_number = Integer.parseInt(request.getParameter("seatNumber"));
 		String customerName = request.getParameter("customerName");
@@ -72,7 +74,7 @@ public class SaveTransaction extends HttpServlet {
 			state.setInt(6, seat_number);
 			state.executeUpdate();
 			request.setAttribute("message", true);
-			getServletContext().getRequestDispatcher("/index.jsp").forward(
+			getServletContext().getRequestDispatcher("/adminindex.jsp").forward(
 					request, response);
 
 		} catch (SQLException | ClassNotFoundException e) {

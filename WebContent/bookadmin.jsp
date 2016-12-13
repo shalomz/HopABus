@@ -26,6 +26,38 @@
 <title>Reserve Seat</title>
 </head>
 <body>
+<%
+	if (session.getAttribute("admin")==null){
+		System.out.println("No Session Attr");
+		response.sendRedirect("index.jsp");
+	}
+%>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+				aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="admin.jsp">HopABus</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#">Dashboard</a></li>
+				<li><a href="#">Settings</a></li>
+				<li><a href="#">Profile</a></li>
+				<li><a href="#">Help</a></li>
+			</ul>
+
+		</div>
+	</div>
+	</nav>
+<br>
+<br>
+<br>
 <div class="container">
 	<br>
 	<%
@@ -44,7 +76,7 @@
 			<%
 				}
 			%>
-	<form action="SaveTransaction" class="form-horizontal" method="POST">
+	<form action="AdminSaveTransaction" class="form-horizontal" method="POST">
 		<table class="table table-striped">
 			<c:forEach var="row" items="${result.rows}">
 				<div class="form-group">
@@ -80,7 +112,6 @@
 							placeholder="Departure Time" value="${row.time}" readonly>
 					</div>
 				</div>
-
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Customer Name</label>
 
@@ -102,7 +133,7 @@
 
 					<button id="btnSubmit" type="submit"
 						class="btn btn-lg btn-success col-sm-offset-3">Book</button>
-					<a href="index.jsp" class="btn btn-lg btn-danger">Go back</a> <a
+					<a href="adminindex.jsp" class="btn btn-lg btn-danger">Go back</a> <a
 						href="transactioncomplete.jsp" class="btn btn-lg btn-info">Generate Receipt</a>
 				</div>
 

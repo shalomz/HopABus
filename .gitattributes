@@ -1,0 +1,14 @@
+*.jsp linguist-language=Java
+WebContent/css/* linguist-vendored
+WebContent/js/* linguist-vendored
+WebContent/datepicker/* linguist-vendored
+WebContent/daterangepicker/* linguist-vendored
+WebContent/select2/* linguist-vendored
+WebContent/timepicker/* linguist-vendored
+WebContent/bootstrap-wysihtml5/* linguist-vendored
+WebContent/font-awesome/* linguist-vendored
+WebContent/fonts/* linguist-vendored
+
+
+
+

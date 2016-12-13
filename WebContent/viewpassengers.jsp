@@ -15,14 +15,37 @@ SELECT * from Transactions where seat_number > 0
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<jsp:include page = "header.jsp"/>
+<jsp:include page="header.jsp" />
 <title>Customers</title>
 </head>
 <body>
-<jsp:include page = "navbar.jsp"/>
-<br>
-<br>
-<br>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="admin.jsp">HopABus</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="adminavailable.jsp">Available Buses</a></li>
+					<li><a href="#"></a></li>
+					<li><a href="#">Profile</a></li>
+					<li><a href="#">Help</a></li>
+				</ul>
+
+			</div>
+		</div>
+	</nav>
+
+	<br>
+	<br>
+	<br>
 	<div class="table-responsive col-sm-8 col-sm-offset-2">
 		<table class="table table-striped table-hover">
 			<thead>
